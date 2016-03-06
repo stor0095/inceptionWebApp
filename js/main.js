@@ -23,8 +23,37 @@ function init(ev){
     //transitionend or animationend listeners
     obj.addEventListener("animationend", pageAnimated);
   });
+ // NAV BAR - HAMMER JS EVENTS
+    var homeNav = document.querySelector(".homeButton");
+    var castNav = document.querySelector(".castButton");
+    var reviewNav = document.querySelector(".reviewButton");
+    
+    var homeButton = new Hammer(homeNav);
+    var castButton = new Hammer(castNav);
+    var reviewButton = new Hammer(reviewNav);
+    homeButton.on('tap', function(ev){
+        console.log("Tap worked");
+    });
+    castButton.on('tap', function(ev){
+        console.log("Tap worked");
+    });
+    reviewButton.on('tap', function(ev){
+        console.log("Tap worked");
+    });
+    
+    // HAMMER JS FOR ROTTEN TOMATOES LINK
+    var rottenLink = document.querySelector(".webLink");
+    var rottenFunc = new Hammer(rottenLink);
+    rottenFunc.on('tap', function(ev){
+        // Alert the user that they are leaving the site
+    var confirmMessage = "You are being taken to Rotten Tomatoes";
+    var go = "http://www.rottentomatoes.com/m/inception/";
+    
+    if (alert(confirmMessage)){
+        window.location = go;
+    } 
+    });
 }
-
 function navigate(ev){
   ev.preventDefault();
   var btn = ev.target;
@@ -47,7 +76,6 @@ function navigate(ev){
     }
   }
 }
-
 function pageAnimated(ev){
 //  console.log("Transition finished for " + ev.target.id);
 //  console.dir(ev);
@@ -60,15 +88,3 @@ var page = ev.target;
     ev.target.classList.add("hidden");
   }
 }
-function webLink() {
-    // Alert the user that they are leaving the site
-    var confirmMessage = "You are being taken to Rotten Tomatoes";
-    var go = "http://www.rottentomatoes.com/m/inception/";
-    
-    if (alert(confirmMessage)){
-        window.location = go;
-    } else {
-        console.log("ERROR");
-    }
-}
-
